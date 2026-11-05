@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="150" height="20" role="img" aria-label="language: TypeScript">
+  <title>language: TypeScript</title>
+  <rect width="68" height="20" fill="#21262d"/>
+  <rect x="68" width="82" height="20" fill="#3178C6"/>
+  <g fill="#fff" font-family="Verdana,DejaVu Sans,Geneva,sans-serif" font-size="11" text-anchor="middle">
+    <text x="34" y="14" textLength="56" lengthAdjust="spacingAndGlyphs" fill="#c9d1d9">language</text>
+    <text x="109" y="14" textLength="70" lengthAdjust="spacingAndGlyphs">TypeScript</text>
+  </g>
+</svg>

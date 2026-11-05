@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 260" role="img" aria-labelledby="t d" width="100%">
+  <title id="t">Software Factory Starter</title>
+  <desc id="d">Label an issue, approve the plan, approve the pull request: issue, plan, build, review, merge.</desc>
+  <defs>
+    <linearGradient id="brand" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06B6D4"/>
+      <stop offset="50%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#9333EA"/>
+    </linearGradient>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#08090d"/>
+      <stop offset="100%" stop-color="#0e1117"/>
+    </linearGradient>
+    <filter id="blur" x="-30%" y="-100%" width="160%" height="300%">
+      <feGaussianBlur stdDeviation="26"/>
+    </filter>
+    <filter id="glow" x="-20%" y="-50%" width="140%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M20 0H0V20" fill="none" stroke="#ffffff" stroke-opacity="0.035" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1000" height="260" rx="12" fill="url(#bg)" stroke="#1f293d" stroke-width="1.5"/>
+  <rect x="1" y="1" width="998" height="258" rx="11" fill="url(#grid)"/>
+  <ellipse cx="500" cy="105" rx="400" ry="70" fill="#7C3AED" opacity="0.14" filter="url(#blur)"/>
+
+  <text x="500" y="50" text-anchor="middle" font-family="'IBM Plex Mono','SFMono-Regular',Menlo,Consolas,monospace" font-size="13" letter-spacing="5" fill="#8b949e">MUTAGENT · SOFTWARE FACTORY</text>
+
+  <text x="500" y="122" text-anchor="middle" font-family="'Space Grotesk','Segoe UI',system-ui,-apple-system,sans-serif" font-size="58" font-weight="700" letter-spacing="1" fill="url(#brand)" filter="url(#glow)" textLength="760" lengthAdjust="spacingAndGlyphs">SOFTWARE FACTORY STARTER</text>
+
+  <!-- pipeline -->
+  <g font-family="'IBM Plex Mono','SFMono-Regular',Menlo,Consolas,monospace" font-size="13" text-anchor="middle">
+    <line x1="140" y1="190" x2="860" y2="190" stroke="url(#brand)" stroke-width="2" stroke-opacity="0.75"/>
+
+    <g>
+      <rect x="92" y="174" width="96" height="32" rx="2" fill="#0e1117" stroke="#30363d"/>
+      <text x="140" y="195" fill="#e6edf3">issue</text>
+    </g>
+    <g>
+      <rect x="236" y="174" width="96" height="32" rx="2" fill="#0e1117" stroke="#30363d"/>
+      <text x="284" y="195" fill="#e6edf3">plan</text>
+    </g>
+    <g>
+      <rect x="380" y="174" width="96" height="32" rx="2" fill="#7E47D7" stroke="#9E6DE9"/>
+      <text x="428" y="195" fill="#ffffff">approve</text>
+    </g>
+    <g>
+      <rect x="524" y="174" width="96" height="32" rx="2" fill="#0e1117" stroke="#30363d"/>
+      <text x="572" y="195" fill="#e6edf3">build</text>
+    </g>
+    <g>
+      <rect x="668" y="174" width="96" height="32" rx="2" fill="#0e1117" stroke="#30363d"/>
+      <text x="716" y="195" fill="#e6edf3">review</text>
+    </g>
+    <g>
+      <rect x="812" y="174" width="96" height="32" rx="2" fill="#7E47D7" stroke="#9E6DE9"/>
+      <text x="860" y="195" fill="#ffffff">merge</text>
+    </g>
+
+    <text x="140" y="228" font-size="11" fill="#8b949e">factory:pickup</text>
+    <text x="284" y="228" font-size="11" fill="#8b949e">architect</text>
+    <text x="428" y="228" font-size="11" fill="#c4a5f5">you</text>
+    <text x="572" y="228" font-size="11" fill="#8b949e">developer</text>
+    <text x="716" y="228" font-size="11" fill="#8b949e">reviewer</text>
+    <text x="860" y="228" font-size="11" fill="#c4a5f5">you</text>
+  </g>
+</svg>

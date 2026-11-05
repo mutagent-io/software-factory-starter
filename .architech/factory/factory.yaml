@@ -1,0 +1,85 @@
+# .architech/factory/factory.yaml · the Mutagent Software Factory for this repository
+#
+# A factory turns a labelled issue into a reviewed, merged pull request:
+#   plan → (you approve the plan) → build → review → (you approve the PR) → land
+# scripts/setup-factory.sh fills in boards.main.ref and repos for your org; then
+#   architech factory push --dry-run --json   # check it, nothing is stored
+#   architech factory push --json             # store it; the factory starts disabled
+#   architech factory enable software-factory-starter --json
+apiVersion: architech/factory/v2
+kind: Factory
+metadata:
+  name: software-factory-starter         # the factory id in your workspace
+  displayName: Software Factory Starter
+  description: The demo factory from mutagent-io/software-factory-starter.
+mode: cloud                               # runs in Mutagent cloud sandboxes
+
+# The Architech framework this file was written against. Informational: when the server runs
+# another one, push says so and your runs use the server's framework.
+framework: { version: "0.3.0", digest: "sha256:1b849816d3c84f9c83d15eeb8921a2178ebd2847f45d7b846c4a52cd2f882825" }
+
+# Which model runs each role. Left out, every role uses your workspace's default model.
+# To pin one, write provider:model as your workspace lists it (mutagent helix models --json):
+# agents:
+#   roles:
+#     architect: { model: 'anthropic:claude-opus-5', effort: high }
+#     developer: { model: 'anthropic:claude-opus-5', effort: medium }
+#     reviewer:  { model: 'anthropic:claude-opus-5', effort: medium }
+
+limits:
+  maxActiveRuns: 1                        # one issue at a time; more queue, none are dropped
+  maxConcurrentSandboxes: 2
+  budget: { perRunUsd: 10, perDayUsd: 30 } # dollar caps for a demo; raise or set null to remove
+
+plan:
+  subItems: none                          # one issue → one plan → one build → one pull request
+
+board: main
+boards:
+  main:
+    provider: github
+    # An org-owned GitHub Project (personal Projects are not supported in the cloud).
+    # setup-factory.sh writes your org and the Project's number here.
+    ref: { owner: mutagent-io, project: 1 }
+    statusMap:                            # factory status → your board's Status column
+      planning: "In Progress"
+      awaiting_approval: "In Review"      # a plan waits for you
+      approved: "In Progress"
+      in_progress: "In Progress"
+      in_review: "In Review"
+      awaiting_merge: "In Review"         # a PR waits for you
+      done: "Done"
+      # Todo is yours: new issues sit there until you add factory:pickup.
+
+repos:
+  - name: mutagent-io/software-factory-starter
+    defaultBranch: main
+    zones:
+      protected: ['.architech/**', '.github/**']   # a change here always waits for your PR approval
+
+labels:                                   # label roles → label names (scripts/labels.sh creates them)
+  pickup: ['factory:pickup']              # you add it to an issue → the factory starts planning
+  approvePlan: 'factory:approved'         # you add it → the plan is approved, the build starts
+  revisePlan: 'factory:changes'           # comment what to change, then add it → a new plan
+  approve: 'merge:ready'                  # you add it to the PR → the factory may merge it
+  hold: 'merge:hold'                      # stops pickup and merge, whoever else said go
+  loosen: 'merge:yolo'                    # merge without approval or review (never past a hold)
+  layers: []
+  origin: { user: 'origin:user', agent: 'origin:agent' }
+
+policy:
+  merge:
+    # standard: the default branch waits for a person. After Review → Approve, add merge:ready
+    # (or press Merge yourself). as-ready: merge on its own once the factory's review passes and
+    # CI is green on that head.
+    preset: standard
+  autonomy: calibrating                   # every PR waits for your Review → Approve
+
+triggers:
+  - name: pickup                          # gh issue edit N --add-label factory:pickup
+    on:  { source: board, event: label, label: 'factory:pickup' }
+    run: { stage: plan }
+
+  - name: ci-fix                          # red CI on a factory branch → back to build
+    on:  { source: github, event: ci-failed, branch: 'factory/*' }
+    run: { stage: build }

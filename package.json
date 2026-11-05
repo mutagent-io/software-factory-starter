@@ -1,0 +1,21 @@
+{
+  "name": "software-factory-starter",
+  "version": "0.1.0",
+  "description": "A tiny TypeScript CLI that turns text into URL slugs. The demo app of the Mutagent Software Factory Starter.",
+  "license": "MIT",
+  "type": "module",
+  "private": true,
+  "bin": {
+    "starter": "src/cli.ts"
+  },
+  "scripts": {
+    "start": "bun src/cli.ts",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit",
+    "check": "bun run typecheck && bun test"
+  },
+  "devDependencies": {
+    "@types/bun": "1.4.4",
+    "typescript": "5.9.3"
+  }
+}
