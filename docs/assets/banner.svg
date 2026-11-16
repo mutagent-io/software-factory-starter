@@ -1,69 +1,49 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 260" role="img" aria-labelledby="t d" width="100%">
   <title id="t">Software Factory Starter</title>
   <desc id="d">Label an issue, approve the plan, approve the pull request: issue, plan, build, review, merge.</desc>
-  <!-- Monochrome by design: black, white and greys only. -->
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#000000"/>
-      <stop offset="100%" stop-color="#0a0a0a"/>
-    </linearGradient>
-    <filter id="blur" x="-30%" y="-100%" width="160%" height="300%">
-      <feGaussianBlur stdDeviation="30"/>
-    </filter>
-    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-      <path d="M20 0H0V20" fill="none" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
-    </pattern>
+    <radialGradient id="wash-lilac"><stop offset="0" stop-color="#c38ef4" stop-opacity="0.95"/><stop offset="0.55" stop-color="#d9b8f7" stop-opacity="0.5"/><stop offset="1" stop-color="#f7f5f7" stop-opacity="0"/></radialGradient>
+    <radialGradient id="wash-lilac-soft"><stop offset="0" stop-color="#d4b0f7" stop-opacity="0.85"/><stop offset="1" stop-color="#f7f5f7" stop-opacity="0"/></radialGradient>
+    <radialGradient id="wash-lime"><stop offset="0" stop-color="#e6fbb0" stop-opacity="1"/><stop offset="0.5" stop-color="#eef8cf" stop-opacity="0.6"/><stop offset="1" stop-color="#f7f5f7" stop-opacity="0"/></radialGradient>
+    <linearGradient id="tint" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6eefc"/><stop offset="1" stop-color="#efe2fb"/></linearGradient>
   </defs>
 
-  <!-- panel: inset by half the stroke so the edge is drawn whole, corners included -->
-  <rect x="0.75" y="0.75" width="998.5" height="258.5" rx="12" fill="url(#bg)" stroke="#333333" stroke-width="1.5"/>
-  <rect x="1.5" y="1.5" width="997" height="257" rx="11" fill="url(#grid)"/>
-  <ellipse cx="500" cy="100" rx="380" ry="60" fill="#ffffff" opacity="0.06" filter="url(#blur)"/>
+  <rect width="1000" height="260" fill="#f7f5f7"/>
+  <ellipse cx="0" cy="285" rx="430" ry="235" fill="url(#wash-lilac)"/>
+  <ellipse cx="985" cy="290" rx="330" ry="165" fill="url(#wash-lilac-soft)"/>
+  <ellipse cx="1000" cy="-15" rx="420" ry="205" fill="url(#wash-lime)"/>
 
-  <text x="500" y="46" text-anchor="middle" font-family="'IBM Plex Mono','SFMono-Regular',Menlo,Consolas,monospace" font-size="13" letter-spacing="5" fill="#8c8c8c">MUTAGENT · SOFTWARE FACTORY</text>
-
-  <!-- Mutagent mark: the design-system key visual (mutagent-ui/public/brand/mark-white.svg), paths verbatim -->
-  <g fill="#ffffff" transform="translate(100 72) scale(1.0788) translate(-1342 -24)">
+  <g id="mark" fill="#000000" transform="translate(443 32) scale(0.3853) translate(-1342 -24)">
     <path d="M1351.5 72.73C1350.27 72.73 1349.09 72.4 1348.08 71.77C1344.66 69.62 1343.98 64.27 1346.61 60.08C1347.64 58.42 1349.07 57.11 1350.72 56.27C1353.12 55.06 1354.53 52.5 1354.29 49.82C1354.04 47.14 1352.19 44.88 1349.61 44.11C1349.07 43.95 1348.56 43.72 1348.08 43.42C1344.65 41.27 1343.98 35.91 1346.6 31.72C1348.4 28.85 1351.45 27 1354.36 27C1355.59 27 1356.77 27.33 1357.77 27.96C1359.73 29.19 1360.86 31.44 1360.87 34.14C1360.88 36.1 1361.76 37.94 1363.27 39.19C1364.45 40.16 1365.93 40.69 1367.44 40.69C1367.85 40.69 1368.26 40.65 1368.67 40.57C1368.72 40.56 1368.77 40.55 1368.82 40.54C1371.53 40.1 1373.67 38.02 1374.2 35.33C1374.45 34.07 1374.93 32.85 1375.64 31.73C1377.44 28.86 1380.48 27 1383.39 27C1384.63 27 1385.8 27.34 1386.81 27.96C1388.47 29.01 1389.59 30.85 1389.86 33.03C1390.14 35.24 1389.58 37.6 1388.28 39.66C1386.57 42.38 1383.78 44.19 1380.98 44.37C1378.23 44.55 1375.88 46.42 1375.11 49.07C1374.87 49.87 1374.52 50.64 1374.06 51.37C1372.52 53.84 1369.9 55.43 1367.4 55.45C1365.63 55.45 1363.93 56.18 1362.7 57.46C1361.47 58.73 1360.8 60.46 1360.86 62.23C1360.93 64.22 1360.37 66.22 1359.25 68.01C1357.45 70.88 1354.4 72.73 1351.49 72.73L1351.5 72.73Z"/>
     <path d="M1387.3 67.73C1389.89 63.23 1389.04 57.87 1385.39 55.76C1381.74 53.66 1376.67 55.6 1374.07 60.1C1371.47 64.6 1372.33 69.95 1375.98 72.06C1379.63 74.17 1384.7 72.23 1387.3 67.73Z"/>
   </g>
+  <text x="475" y="48.5" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="16.5" font-weight="600" letter-spacing="0.2" fill="#000000" textLength="82" lengthAdjust="spacingAndGlyphs">MUTAGENT</text>
 
-  <text x="178" y="122" font-family="'Space Grotesk','Segoe UI',system-ui,-apple-system,sans-serif" font-size="58" font-weight="700" letter-spacing="1" fill="#ffffff" textLength="722" lengthAdjust="spacingAndGlyphs">SOFTWARE FACTORY STARTER</text>
+  <text x="500" y="120" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="56" font-weight="500" letter-spacing="-1" fill="#000000" textLength="727" lengthAdjust="spacingAndGlyphs">SOFTWARE FACTORY STARTER</text>
 
-  <!-- pipeline: the two steps that are yours are inverted (white) -->
-  <g font-family="'IBM Plex Mono','SFMono-Regular',Menlo,Consolas,monospace" font-size="13" text-anchor="middle">
-    <line x1="140" y1="190" x2="860" y2="190" stroke="#ffffff" stroke-width="2" stroke-opacity="0.35"/>
-
-    <g>
-      <rect x="92" y="174" width="96" height="32" rx="2" fill="#0a0a0a" stroke="#404040"/>
-      <text x="140" y="195" fill="#e6e6e6">issue</text>
-    </g>
-    <g>
-      <rect x="236" y="174" width="96" height="32" rx="2" fill="#0a0a0a" stroke="#404040"/>
-      <text x="284" y="195" fill="#e6e6e6">plan</text>
-    </g>
-    <g>
-      <rect x="380" y="174" width="96" height="32" rx="2" fill="#ffffff" stroke="#ffffff"/>
-      <text x="428" y="195" fill="#000000" font-weight="600">approve</text>
-    </g>
-    <g>
-      <rect x="524" y="174" width="96" height="32" rx="2" fill="#0a0a0a" stroke="#404040"/>
-      <text x="572" y="195" fill="#e6e6e6">build</text>
-    </g>
-    <g>
-      <rect x="668" y="174" width="96" height="32" rx="2" fill="#0a0a0a" stroke="#404040"/>
-      <text x="716" y="195" fill="#e6e6e6">review</text>
-    </g>
-    <g>
-      <rect x="812" y="174" width="96" height="32" rx="2" fill="#ffffff" stroke="#ffffff"/>
-      <text x="860" y="195" fill="#000000" font-weight="600">merge</text>
-    </g>
-
-    <text x="140" y="228" font-size="11" fill="#8c8c8c">factory:pickup</text>
-    <text x="284" y="228" font-size="11" fill="#8c8c8c">architect</text>
-    <text x="428" y="228" font-size="11" fill="#ffffff">you</text>
-    <text x="572" y="228" font-size="11" fill="#8c8c8c">developer</text>
-    <text x="716" y="228" font-size="11" fill="#8c8c8c">reviewer</text>
-    <text x="860" y="228" font-size="11" fill="#ffffff">you</text>
+  <g font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif" text-anchor="middle">
+    <rect id="box-issue" x="28.5" y="164.5" width="123" height="46" fill="url(#tint)" stroke="#000000" stroke-width="1"/>
+    <text x="90" y="192.5" font-size="15" letter-spacing="0.5" fill="#000000">issue</text>
+    <text x="90" y="235" font-size="12.5" letter-spacing="0.4" fill="#707070">factory:pickup</text>
+    <text x="172" y="191.5" font-size="17" fill="#666666">→</text>
+    <rect id="box-plan" x="192.5" y="164.5" width="123" height="46" fill="url(#tint)" stroke="#000000" stroke-width="1"/>
+    <text x="254" y="192.5" font-size="15" letter-spacing="0.5" fill="#000000">plan</text>
+    <text x="254" y="235" font-size="12.5" letter-spacing="0.4" fill="#707070">architect</text>
+    <text x="336" y="191.5" font-size="17" fill="#666666">→</text>
+    <rect id="box-approve" x="356.5" y="164.5" width="123" height="46" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <text x="418" y="192.5" font-size="15" letter-spacing="0.5" fill="#ffffff">approve</text>
+    <text x="418" y="235" font-size="12.5" letter-spacing="0.4" fill="#9333EA">you</text>
+    <text x="500" y="191.5" font-size="17" fill="#666666">→</text>
+    <rect id="box-build" x="520.5" y="164.5" width="123" height="46" fill="#fbfafc" stroke="#000000" stroke-width="1"/>
+    <text x="582" y="192.5" font-size="15" letter-spacing="0.5" fill="#000000">build</text>
+    <text x="582" y="235" font-size="12.5" letter-spacing="0.4" fill="#707070">developer</text>
+    <text x="664" y="191.5" font-size="17" fill="#666666">→</text>
+    <rect id="box-review" x="684.5" y="164.5" width="123" height="46" fill="#fbfafc" stroke="#000000" stroke-width="1"/>
+    <text x="746" y="192.5" font-size="15" letter-spacing="0.5" fill="#000000">review</text>
+    <text x="746" y="235" font-size="12.5" letter-spacing="0.4" fill="#707070">reviewer</text>
+    <text x="828" y="191.5" font-size="17" fill="#666666">→</text>
+    <rect id="box-merge" x="848.5" y="164.5" width="123" height="46" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <text x="910" y="192.5" font-size="15" letter-spacing="0.5" fill="#ffffff">merge</text>
+    <text x="910" y="235" font-size="12.5" letter-spacing="0.4" fill="#9333EA">you</text>
   </g>
 </svg>
