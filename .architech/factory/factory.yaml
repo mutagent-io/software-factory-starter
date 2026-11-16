@@ -2,6 +2,9 @@
 #
 # A factory turns a labelled issue into a reviewed, merged pull request:
 #   plan → (you approve the plan) → build → review → (you approve the PR) → land
+# It ships with placeholders (YOUR_ORG, project 0, YOUR_ORG/YOUR_REPO). A GitHub account name cannot
+# contain an underscore, so YOUR_ORG can never be a real org (nor YOUR_ORG/YOUR_REPO a real repo): an
+# unconfigured copy fails instead of pointing at someone else's board.
 # scripts/setup-factory.sh fills in boards.main.ref and repos for your org; then
 #   architech factory push --dry-run --json   # check it, nothing is stored
 #   architech factory push --json             # store it; the factory starts disabled
@@ -40,7 +43,7 @@ boards:
     provider: github
     # An org-owned GitHub Project (personal Projects are not supported in the cloud).
     # setup-factory.sh writes your org and the Project's number here.
-    ref: { owner: mutagent-io, project: 1 }
+    ref: { owner: YOUR_ORG, project: 0 }
     statusMap:                            # factory status → your board's Status column
       planning: "In Progress"
       awaiting_approval: "In Review"      # a plan waits for you
@@ -52,7 +55,7 @@ boards:
       # Todo is yours: new issues sit there until you add factory:pickup.
 
 repos:
-  - name: mutagent-io/software-factory-starter
+  - name: YOUR_ORG/YOUR_REPO
     defaultBranch: main
     zones:
       protected: ['.architech/**', '.github/**']   # a change here always waits for your PR approval

@@ -38,6 +38,8 @@ while [ $# -gt 0 ]; do
 done
 
 cd "$(git rev-parse --show-toplevel)"
+# shellcheck source=scripts/factory-file.sh
+. scripts/factory-file.sh
 say()  { printf '\n== %s\n' "$*"; }
 ok()   { printf '   ok: %s\n' "$*"; }
 todo() { printf '   would: %s\n' "$*"; }
@@ -149,10 +151,7 @@ if [ -n "$NUMBER" ]; then
   # ── 4. factory.yaml: this org, this Project, this repo ────────────────────────────────────────
   say "$FILE"
   TMP="$(mktemp)"
-  sed -E \
-    -e "s#^(    ref: \\{ owner: )[^,]+(, project: )[0-9]+( \\}.*)\$#\\1$OWNER\\2$NUMBER\\3#" \
-    -e "s#^(  - name: )[^ ]+\$#\\1$REPO#" \
-    "$FILE" >"$TMP"
+  factory_fill "$FILE" "$OWNER" "$NUMBER" "$REPO" >"$TMP"
   if cmp -s "$FILE" "$TMP"; then
     ok "already names $OWNER, Project #$NUMBER and $REPO"
     rm -f "$TMP"
@@ -178,6 +177,14 @@ EOF
 fi
 
 say "Mutagent workspace"
+if factory_has_placeholders "$FILE"; then
+  if [ "$DRY_RUN" -eq 1 ]; then
+    todo "validate, push and enable once $FILE names your org, Project and repo (run without --dry-run first)"
+    say "Dry run done: nothing was changed"
+    exit 0
+  fi
+  die "$FILE still has a placeholder (YOUR_ORG, YOUR_REPO or project 0): run scripts/setup-factory.sh first, or set boards.main.ref and repos[0].name by hand"
+fi
 command -v architech >/dev/null || die "the architech CLI is not installed"
 STATUS="$(architech factory status --json)" || die "not signed in: architech factory login"
 SITES="$(field data.integrations <<<"$STATUS")"
