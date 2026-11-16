@@ -43,6 +43,21 @@ describe('factory_has_placeholders', () => {
     expect(hasPlaceholders(projectZero, 'project-zero.yaml')).toBe(true);
   });
 
+  test('refuses a half-filled file: board filled in, repo name still the upper-case placeholder', () => {
+    const halfFilled = SHIPPED.replace('ref: { owner: YOUR_ORG, project: 0 }', 'ref: { owner: acme, project: 7 }');
+    expect(halfFilled).toContain('  - name: YOUR_ORG/YOUR_REPO\n');
+    expect(hasPlaceholders(halfFilled, 'half-filled.yaml')).toBe(true);
+  });
+
+  test('accepts a filled-in file with a trailing comment naming a placeholder', () => {
+    const commented = fill(SHIPPED, 'to-fill-comment.yaml').replace(
+      '  - name: acme/factory-demo\n',
+      '  - name: acme/factory-demo  # was YOUR_ORG/YOUR_REPO\n',
+    );
+    expect(commented).toContain('# was YOUR_ORG/YOUR_REPO');
+    expect(hasPlaceholders(commented, 'trailing-comment.yaml')).toBe(false);
+  });
+
   test('refuses lower-case placeholders', () => {
     const lower = SHIPPED.replace('ref: { owner: YOUR_ORG, project: 0 }', 'ref: { owner: acme, project: 7 }')
       .replace('name: YOUR_ORG/YOUR_REPO', 'name: your_org/your_repo');
