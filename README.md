@@ -144,7 +144,7 @@ The script is safe to run again. It only adds what is missing:
 - an organization Project named **Software Factory Starter**, with the Status columns
   **Todo, In Progress, In Review, Done**, linked to your repository;
 - your organization, Project number and repository written into `factory.yaml`, in place of the
-  placeholders it ships with (`owner: YOUR-ORG`, `project: 0`, `name: YOUR-ORG/YOUR-REPO`). Until
+  placeholders it ships with (`owner: YOUR_ORG`, `project: 0`, `name: YOUR_ORG/YOUR_REPO`). Until
   they are replaced, `--push` stops and the factory points at no real board.
 
 <details>
@@ -152,8 +152,8 @@ The script is safe to run again. It only adds what is missing:
 
 Run `scripts/labels.sh`. Create a Project under your organization (**Projects › New project ›
 Board**), and add the **In Review** option to its Status field. Then replace the placeholders in
-`factory.yaml`: `boards.main.ref` (`owner: YOUR-ORG`, `project: 0`) with your org and Project
-number, and `repos[0].name` (`YOUR-ORG/YOUR-REPO`) with your repository.
+`factory.yaml`: `boards.main.ref` (`owner: YOUR_ORG`, `project: 0`) with your org and Project
+number, and `repos[0].name` (`YOUR_ORG/YOUR_REPO`) with your repository.
 
 </details>
 
@@ -297,9 +297,9 @@ More in the guide's [troubleshooting](docs/guide.html#trouble).
 ├── src/
 │   ├── slug.ts             slugify(input, options): the library function
 │   └── cli.ts              the command line: parseArgs and main
-├── test/slug.test.ts       the tests (bun:test)
+├── test/                   the tests (bun:test): slug.test.ts · setup-factory.test.ts
 ├── examples/issues/        two ready factory issues
-├── scripts/                setup-factory.sh · labels.sh · file-example-issues.sh
+├── scripts/                setup-factory.sh (+ factory-file.sh) · labels.sh · file-example-issues.sh
 ├── docs/guide.html         the full guide (offline, light and dark)
 ├── .architech/factory/     factory.yaml
 ├── .github/                CI workflow · Factory task issue template

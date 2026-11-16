@@ -297,7 +297,7 @@ cd my-factory</code></pre></li>
       <pre><code>architech factory login                                  <span class="c"># once; opens the browser</span>
 architech factory integrations connect github --wait     <span class="c"># pick your organization</span></code></pre></li>
     <li class="you"><div class="who you-tag">GitHub</div>
-      <p><strong>Labels, the board and <code>factory.yaml</code>.</strong> The script adds the <a href="#labels">labels</a>, an org Project named <em>Software Factory Starter</em> with the Status columns <strong>Todo, In Progress, In Review, Done</strong> linked to your repo, and writes your org, Project number and repo into <code>factory.yaml</code>, replacing the placeholders it ships with (<code>owner: YOUR-ORG</code>, <code>project: 0</code>, <code>name: YOUR-ORG/YOUR-REPO</code>); until then <code>--push</code> stops. It only adds what is missing and is safe to run again.</p>
+      <p><strong>Labels, the board and <code>factory.yaml</code>.</strong> The script adds the <a href="#labels">labels</a>, an org Project named <em>Software Factory Starter</em> with the Status columns <strong>Todo, In Progress, In Review, Done</strong> linked to your repo, and writes your org, Project number and repo into <code>factory.yaml</code>, replacing the placeholders it ships with (<code>owner: YOUR_ORG</code>, <code>project: 0</code>, <code>name: YOUR_ORG/YOUR_REPO</code>); until then <code>--push</code> stops. It only adds what is missing and is safe to run again.</p>
       <pre><code>scripts/setup-factory.sh --dry-run    <span class="c"># shows what it would change; changes nothing</span>
 scripts/setup-factory.sh              <span class="c"># does it</span>
 git add .architech/factory/factory.yaml &amp;&amp; git commit -m "factory: our board" &amp;&amp; git push</code></pre></li>
@@ -316,8 +316,8 @@ gh issue edit &lt;n&gt; --add-label factory:pickup</code></pre></li>
   <div class="callout">
     <p>Doing step 4 by hand: run <code>scripts/labels.sh</code>, create a Board Project under your organization, add the
     <strong>In Review</strong> option to its Status field, then replace the placeholders in <code>factory.yaml</code>:
-    <code>boards.main.ref</code> (<code>owner: YOUR-ORG</code>, <code>project: 0</code>) with your org and Project number, and
-    <code>repos[0].name</code> (<code>YOUR-ORG/YOUR-REPO</code>) with your repository.</p>
+    <code>boards.main.ref</code> (<code>owner: YOUR_ORG</code>, <code>project: 0</code>) with your org and Project number, and
+    <code>repos[0].name</code> (<code>YOUR_ORG/YOUR_REPO</code>) with your repository.</p>
   </div>
 </section>
 
@@ -426,10 +426,12 @@ architech factory runs logs &lt;run-id&gt; --follow</code></pre>
       <tr><td><code>src/slug.ts</code></td><td><code>slugify(input, options)</code>, the library function</td></tr>
       <tr><td><code>src/cli.ts</code></td><td>The command line: <code>parseArgs</code> and <code>main</code></td></tr>
       <tr><td><code>test/slug.test.ts</code></td><td>The tests (<code>bun:test</code>)</td></tr>
+      <tr><td><code>test/setup-factory.test.ts</code></td><td>Tests for the placeholder check and the <code>factory.yaml</code> rewrite</td></tr>
       <tr><td><code>.architech/factory/factory.yaml</code></td><td>The factory definition: board, labels, merge policy, triggers</td></tr>
       <tr><td><code>.github/workflows/ci.yml</code></td><td>CI: type-check and tests on every pull request and every push to <code>main</code></td></tr>
       <tr><td><code>.github/ISSUE_TEMPLATE/factory-task.md</code></td><td>The <em>Factory task</em> issue template</td></tr>
       <tr><td><code>scripts/setup-factory.sh</code></td><td>Labels, the org Project and its columns, <code>factory.yaml</code>; <code>--push</code> also validates, pushes and enables</td></tr>
+      <tr><td><code>scripts/factory-file.sh</code></td><td>The placeholder check and the <code>factory.yaml</code> rewrite that <code>setup-factory.sh</code> uses</td></tr>
       <tr><td><code>scripts/labels.sh</code></td><td>Creates or updates the eight labels; deletes nothing</td></tr>
       <tr><td><code>scripts/file-example-issues.sh</code></td><td>Files <code>examples/issues/*.md</code>; never adds <code>factory:pickup</code></td></tr>
       <tr><td><code>examples/issues/</code></td><td>Two ready issues: <code>--max-length</code> and accented letters</td></tr>
