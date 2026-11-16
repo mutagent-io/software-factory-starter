@@ -324,3 +324,5 @@ starter [options] <text...>
 ## License
 
 MIT
+
+**Trademarks.** The Mutagent name and logo are trademarks of Mutagent and are not licensed under the MIT License, which covers this repository's code and documentation only. See [NOTICE](NOTICE).
