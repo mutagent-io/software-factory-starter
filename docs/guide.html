@@ -297,7 +297,7 @@ cd my-factory</code></pre></li>
       <pre><code>architech factory login                                  <span class="c"># once; opens the browser</span>
 architech factory integrations connect github --wait     <span class="c"># pick your organization</span></code></pre></li>
     <li class="you"><div class="who you-tag">GitHub</div>
-      <p><strong>Labels, the board and <code>factory.yaml</code>.</strong> The script adds the <a href="#labels">labels</a>, an org Project named <em>Software Factory Starter</em> with the Status columns <strong>Todo, In Progress, In Review, Done</strong> linked to your repo, and writes your org, Project number and repo into <code>factory.yaml</code>. It only adds what is missing and is safe to run again.</p>
+      <p><strong>Labels, the board and <code>factory.yaml</code>.</strong> The script adds the <a href="#labels">labels</a>, an org Project named <em>Software Factory Starter</em> with the Status columns <strong>Todo, In Progress, In Review, Done</strong> linked to your repo, and writes your org, Project number and repo into <code>factory.yaml</code>, replacing the placeholders it ships with (<code>owner: YOUR-ORG</code>, <code>project: 0</code>, <code>name: YOUR-ORG/YOUR-REPO</code>); until then <code>--push</code> stops. It only adds what is missing and is safe to run again.</p>
       <pre><code>scripts/setup-factory.sh --dry-run    <span class="c"># shows what it would change; changes nothing</span>
 scripts/setup-factory.sh              <span class="c"># does it</span>
 git add .architech/factory/factory.yaml &amp;&amp; git commit -m "factory: our board" &amp;&amp; git push</code></pre></li>
@@ -315,8 +315,9 @@ gh issue edit &lt;n&gt; --add-label factory:pickup</code></pre></li>
   </ol>
   <div class="callout">
     <p>Doing step 4 by hand: run <code>scripts/labels.sh</code>, create a Board Project under your organization, add the
-    <strong>In Review</strong> option to its Status field, then set <code>boards.main.ref</code> (owner, Project number) and
-    <code>repos[0].name</code> in <code>factory.yaml</code>.</p>
+    <strong>In Review</strong> option to its Status field, then replace the placeholders in <code>factory.yaml</code>:
+    <code>boards.main.ref</code> (<code>owner: YOUR-ORG</code>, <code>project: 0</code>) with your org and Project number, and
+    <code>repos[0].name</code> (<code>YOUR-ORG/YOUR-REPO</code>) with your repository.</p>
   </div>
 </section>
 

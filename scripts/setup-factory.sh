@@ -178,6 +178,14 @@ EOF
 fi
 
 say "Mutagent workspace"
+if grep -vE '^[[:space:]]*#' "$FILE" | grep -qE 'YOUR-(ORG|REPO)'; then
+  if [ "$DRY_RUN" -eq 1 ]; then
+    todo "validate, push and enable once $FILE names your org, Project and repo (run without --dry-run first)"
+    say "Dry run done: nothing was changed"
+    exit 0
+  fi
+  die "$FILE still has the YOUR-ORG / YOUR-REPO placeholders: run scripts/setup-factory.sh first, or set boards.main.ref and repos[0].name by hand"
+fi
 command -v architech >/dev/null || die "the architech CLI is not installed"
 STATUS="$(architech factory status --json)" || die "not signed in: architech factory login"
 SITES="$(field data.integrations <<<"$STATUS")"
