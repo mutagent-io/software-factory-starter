@@ -73,7 +73,7 @@ flowchart TB
     class HOLD stop
 ```
 
-Purple steps are yours; nothing merges without them under this starter's `policy.merge.preset: standard`.
+Purple steps are yours; nothing merges without them under this starter's `policy.merge.approve: always`.
 
 ---
 
@@ -255,12 +255,13 @@ the full rules. The short form:
 
 | Setting | Value here | Change it to |
 | --- | --- | --- |
-| `policy.merge.preset` | `standard`: the default branch waits for your `merge:ready` or your Merge click | `as-ready`: the factory merges by itself once its review passes and CI is green on that head |
+| `policy.merge.approve` | `always`: the default branch waits for your `merge:ready` or your Merge click | `as-ready`: the factory merges by itself once its review passes and CI is green on that head |
 | `policy.autonomy` | `calibrating`: every PR waits for your Review › Approve | leave it while you build trust |
+| `repos[0].ci` | `required`: the starter ships `.github/workflows/ci.yml`, so every merge needs CI on the exact head; a head with none is never merged | `optional` if you remove the CI workflow (a head with no CI merges after a short grace, labelled) |
 | `repos[0].zones.protected` | `.architech/**`, `.github/**` | a change there always waits for you |
 | `limits` | 1 run at a time, 2 sandboxes, $10 per run, $30 per day | raise them, or `null` for no dollar cap |
 | `agents.roles` | left out: every role uses your workspace's default model | pin a model per role (commented example in the file) |
-| `plan.subItems` | `none`: one issue, one plan, one PR | `board`: one sub-issue and PR per plan part |
+| `policy.plan.subItems` | `none`: one issue, one plan, one PR | `board`: one sub-issue and PR per plan part |
 
 Change the file, then run `architech factory push --json` again. Runs already in flight keep the
 version they started on.

@@ -34,9 +34,6 @@ limits:
   maxConcurrentSandboxes: 2
   budget: { perRunUsd: 10, perDayUsd: 30 } # dollar caps for a demo; raise or set null to remove
 
-plan:
-  subItems: none                          # one issue → one plan → one build → one pull request
-
 board: main
 boards:
   main:
@@ -57,6 +54,10 @@ boards:
 repos:
   - name: YOUR_ORG/YOUR_REPO
     defaultBranch: main
+    # The starter ships .github/workflows/ci.yml (typecheck + test on every pull request), so a copy
+    # has CI: required = every merge needs CI evidence on the exact head; a head with none is never
+    # merged. Removed ci.yml? Write `ci: optional` (no-CI heads merge after a grace, labelled).
+    ci: required
     zones:
       protected: ['.architech/**', '.github/**']   # a change here always waits for your PR approval
 
@@ -71,11 +72,13 @@ labels:                                   # label roles → label names (scripts
   origin: { user: 'origin:user', agent: 'origin:agent' }
 
 policy:
+  plan:
+    subItems: none                        # one issue → one plan → one build → one pull request
   merge:
-    # standard: the default branch waits for a person. After Review → Approve, add merge:ready
+    # always: the default branch waits for a person. After Review → Approve, add merge:ready
     # (or press Merge yourself). as-ready: merge on its own once the factory's review passes and
     # CI is green on that head.
-    preset: standard
+    approve: always
   autonomy: calibrating                   # every PR waits for your Review → Approve
 
 triggers:
